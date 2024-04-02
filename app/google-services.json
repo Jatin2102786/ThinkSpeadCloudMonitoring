@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "107176336241",
+    "project_id": "tscm-3a775",
+    "storage_bucket": "tscm-3a775.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:107176336241:android:a0fc7d3e9d48684abff4d0",
+        "android_client_info": {
+          "package_name": "com.jatin.thinkspeadcloudmonitoring"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD5ET-EeaAP2PcP23PdQu3Q6MdK1wndzWk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

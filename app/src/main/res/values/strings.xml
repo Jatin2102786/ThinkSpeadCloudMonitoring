@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ThinkSpead Cloud Monitoring</string>
+    <string name="help_guide_point1">1.Sign Up or Log In: Go to the ThingSpeak website (https://thingspeak.com/) and either sign up for a new account or log in to your existing account.</string>
+<string name="help_guide_point2">2.Create a Channel: Once logged in, navigate to the "Channels" tab and click on "My Channels". Then, click on "New Channel" to create a new channel. Fill out the necessary details such as Name, Description, Field labels, etc., and click "Save Channel".
+</string>
+<string name="help_guide_point3">3.Get API Key: After creating the channel, navigate to the "API Keys" tab within the channel settings. Here you will find your API keys. ThingSpeak provides two types of API keys: Read API Key and Write API Key. The Read API Key is used to read data from your channel, while the Write API Key is used to write data to your channel. Copy the API key that you need for your application.
+</string>
+<string name="help_guide_point4">4.Use API Key: You can now use the API key in your applications to interact with ThingSpeak. Make sure to keep your API keys secure and do not share them publicly.</string>
+
+
+</resources>
