@@ -38,6 +38,9 @@ class SplashActivity : AppCompatActivity() {
                 (drawable as? AnimatedImageDrawable)?.start()
             }
         }.start()
+
+
+
         Handler(Looper.getMainLooper()).postDelayed({
             if (auth.currentUser != null) {
                 val intent = Intent(this, RecyclerViewActivity::class.java)

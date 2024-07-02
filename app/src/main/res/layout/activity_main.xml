@@ -5,206 +5,196 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".MainActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        >
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-            <androidx.constraintlayout.widget.Guideline
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.8"
-                android:id="@+id/guideV70"
-                />
+        tools:ignore="WebViewLayout">
+
             <TextView
                 android:id="@+id/channel_name"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textAlignment="center"
                 android:textSize="30sp"
                 android:padding="15dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/guideV70"
+
                 />
 
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/btnRefresh"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                app:icon="@drawable/baseline_refresh_24"
-                app:iconGravity="start"
-                android:layout_marginTop="15dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginEnd="10dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:clickable="true"
-                app:cardBackgroundColor="@color/primary"
-                app:layout_constraintStart_toStartOf="@id/guideV70"
 
-                >
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:layout_margin="3dp"
-                    >
-                    <ImageView
-                        android:layout_width="50dp"
-                        android:layout_height="30dp"
-                        android:src="@drawable/baseline_refresh_24"
-                        />
-
-                </LinearLayout>
-
-            </com.google.android.material.card.MaterialCardView>
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-
-
-    <TextView
-        android:id="@+id/data_stream_1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="15dp"
-        android:textAlignment="center"
-        android:textSize="15sp"
-
-        />
-
-        <TableLayout
+        <TextView
+            android:text="value"
+            android:id="@+id/data1"
+            android:paddingStart="10dp"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
-            <TableRow>
-                <TextView
-                    android:text="Field Name"
-                    android:layout_width="0dp"
-                    android:textSize="20sp"
-                    android:textAlignment="center"
-                    android:layout_weight="1" />
-                <TextView
-                    android:text="Data Value"
-                    android:layout_width="0dp"
-                    android:textSize="20sp"
-                    android:textAlignment="center"
-                    android:layout_weight="1" />
-            </TableRow>
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="UselessParent,WebViewLayout">
 
-            <TableRow>
-                <TextView
-                    android:id="@+id/field1"
-                    android:textAlignment="center"
-                    android:layout_width="0dp"
-                    android:layout_weight="1" />
-                <TextView
-                    android:textAlignment="center"
-                    android:id="@+id/data1"
 
-                    android:layout_width="0dp"
-                    android:layout_weight="1" />
-            </TableRow>
-            <TableRow>
-                <TextView
-                    android:layout_width="0dp"
-                    android:textAlignment="center"
-                    android:id="@+id/field2"
-                    android:layout_weight="1" />
-                <TextView
-                    android:layout_width="0dp"
-                    android:id="@+id/data2"
-                    android:textAlignment="center"
-                    android:layout_weight="1" />
-            </TableRow>
-            <TableRow>
-                <TextView
-                    android:id="@+id/field3"
+            <WebView
+                android:id="@+id/webView_1"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
 
-                    android:layout_width="0dp"
-                    android:textAlignment="center"
-                    android:layout_weight="1" />
-                <TextView
-                    android:layout_width="0dp"
-                    android:id="@+id/data3"
-                    android:textAlignment="center"
-                    android:layout_weight="1" />
-            </TableRow>
-            <TableRow>
-                <TextView
-                    android:layout_width="0dp"
-                    android:id="@+id/field4"
-                    android:textAlignment="center"
-                    android:layout_weight="1" />
-                <TextView
-                    android:layout_width="0dp"
-                    android:id="@+id/data4"
-                    android:textAlignment="center"
-                    android:layout_weight="1" />
-            </TableRow>
-            <TableRow>
-                <TextView
-                    android:id="@+id/field5"
-                    android:layout_width="0dp"
-                    android:textAlignment="center"
-                    android:layout_weight="1" />
-                <TextView
-                    android:id="@+id/data5"
-                    android:layout_width="0dp"
-                    android:textAlignment="center"
-                    android:layout_weight="1" />
-            </TableRow>
-            <TableRow>
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:textAlignment="center"
-                    android:id="@+id/field6"
-                    />
-                <TextView
-                    android:id="@+id/data6"
-                    android:layout_width="0dp"
-                    android:textAlignment="center"
-                    android:layout_weight="1" />
-            </TableRow>
-            <TableRow>
-                <TextView
-                    android:layout_width="0dp"
-                    android:id="@+id/field7"
-                    android:textAlignment="center"
+        </HorizontalScrollView>
 
-                    android:layout_weight="1" />
-                <TextView
-                    android:id="@+id/data7"
-                    android:textAlignment="center"
-                    android:layout_width="0dp"
-                    android:layout_weight="1" />
-            </TableRow>
-            <TableRow>
-                <TextView
-                    android:id="@+id/field8"
-                    android:layout_width="0dp"
-                    android:textAlignment="center"
-                    android:layout_weight="1" />
-                <TextView
-                    android:id="@+id/data8"
-                    android:layout_width="0dp"
-                    android:textAlignment="center"
-                    android:layout_weight="1" />
-            </TableRow>
 
-        </TableLayout>
+        <TextView
+            android:text="value"
+            android:id="@+id/data2"
+            android:paddingStart="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="UselessParent,WebViewLayout">
+
+            <WebView
+                android:id="@+id/webView_2"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+        </HorizontalScrollView>>
+
+
+        <TextView
+            android:text="value"
+            android:id="@+id/data3"
+            android:paddingStart="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            tools:ignore="UselessParent,WebViewLayout">
+
+            <WebView
+                android:id="@+id/webView_3"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+        </HorizontalScrollView>
 
 
 
+
+        <TextView
+            android:text="value"
+            android:id="@+id/data4"
+            android:paddingStart="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="UselessParent,WebViewLayout">
+
+            <WebView
+                android:id="@+id/webView4"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+        </HorizontalScrollView>
+
+
+
+        <TextView
+            android:text="value"
+            android:id="@+id/data5"
+            android:paddingStart="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="UselessParent,WebViewLayout">
+
+            <WebView
+                android:id="@+id/webView5"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+        </HorizontalScrollView>
+
+
+        <TextView
+            android:text="value"
+            android:id="@+id/data6"
+            android:paddingStart="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="UselessParent,WebViewLayout">
+
+            <WebView
+                android:id="@+id/webView6"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+        </HorizontalScrollView>
+
+
+
+
+        <TextView
+            android:text="value"
+            android:id="@+id/data7"
+            android:paddingStart="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="UselessParent,WebViewLayout">
+
+            <WebView
+                android:id="@+id/webView7"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+        </HorizontalScrollView>
+
+
+
+
+        <TextView
+            android:text="value"
+            android:id="@+id/data8"
+            android:paddingStart="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:ignore="UselessParent,WebViewLayout">
+
+            <WebView
+                android:id="@+id/webView8"
+                android:layout_width="match_parent"
+                android:layout_height="200dp" />
+
+        </HorizontalScrollView>
 
 
     </LinearLayout>
