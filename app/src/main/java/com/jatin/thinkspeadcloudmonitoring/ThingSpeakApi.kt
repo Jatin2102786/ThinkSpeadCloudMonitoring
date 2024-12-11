@@ -12,7 +12,7 @@ class ThingSpeakApi {
 
     suspend fun fetchDataFromThingSpeak(channelId: String, apiKey: String): String {
         return withContext(Dispatchers.IO) {
-            val url = "https://api.thingspeak.com/channels/${channelId}/feeds.json?api_key=${apiKey}&results=1"
+            val url = "https://api.thingspeak.com/channels/${channelId}/feeds.json?results=2\n"
 
             val request = Request.Builder()
                 .url(url)

@@ -26,18 +26,18 @@ class SplashActivity : AppCompatActivity() {
         auth = FirebaseAuth.getInstance()
 
 
-        Thread{
-            val source = ImageDecoder.createSource(
-                resources,R.drawable.cloud
-            )
-
-            val drawable = ImageDecoder.decodeDrawable(source)
-
-            binding.imgSplash.post {
-                binding.imgSplash.setImageDrawable(drawable)
-                (drawable as? AnimatedImageDrawable)?.start()
-            }
-        }.start()
+//        Thread{
+//            val source = ImageDecoder.createSource(
+//                resources,R.drawable.cloud
+//            )
+//
+//            val drawable = ImageDecoder.decodeDrawable(source)
+//
+//            binding.imgSplash.post {
+//                binding.imgSplash.setImageDrawable(drawable)
+//                (drawable as? AnimatedImageDrawable)?.start()
+//            }
+//        }.start()
 
 
 

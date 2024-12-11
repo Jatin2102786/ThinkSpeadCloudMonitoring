@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <LinearLayout
@@ -14,191 +14,294 @@
         android:orientation="vertical"
         tools:ignore="WebViewLayout">
 
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="30dp"
+            app:cardBackgroundColor="@color/primary"
+            app:cardCornerRadius="10dp">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideV10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.1" />
+
+                <ImageButton
+                    android:id="@+id/imgButtonBack"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:backgroundTint="@color/primary"
+                    android:src="@drawable/baseline_arrow_back_ios_24"
+                    app:layout_constraintEnd_toEndOf="@id/guideV10"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+
+                    />
+
+                <TextView
+                    android:id="@+id/channel_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:padding="15dp"
+                    android:text="Channel Name"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/guideV10"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:id="@+id/layout_1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+
             <TextView
-                android:id="@+id/channel_name"
+                android:id="@+id/data1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:textSize="30sp"
-                android:padding="15dp"
+                android:layout_weight="1"
+                android:paddingStart="10dp"
+                android:text="value" />
 
-                />
-
-
-        <TextView
-            android:text="value"
-            android:id="@+id/data1"
-            android:paddingStart="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="UselessParent,WebViewLayout">
-
-
-            <WebView
-                android:id="@+id/webView_1"
+            <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="200dp"
+                tools:ignore="UselessParent,WebViewLayout">
 
-        </HorizontalScrollView>
 
+                <WebView
+                    android:id="@+id/webView_1"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
 
-        <TextView
-            android:text="value"
-            android:id="@+id/data2"
-            android:paddingStart="10dp"
+            </HorizontalScrollView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="UselessParent,WebViewLayout">
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
 
-            <WebView
-                android:id="@+id/webView_2"
+
+            <TextView
+                android:id="@+id/data2"
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingStart="10dp"
+                android:text="value" />
 
-        </HorizontalScrollView>>
-
-
-        <TextView
-            android:text="value"
-            android:id="@+id/data3"
-            android:paddingStart="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            tools:ignore="UselessParent,WebViewLayout">
-
-            <WebView
-                android:id="@+id/webView_3"
+            <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="200dp"
+                tools:ignore="UselessParent,WebViewLayout">
 
-        </HorizontalScrollView>
+                <WebView
+                    android:id="@+id/webView_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
 
+            </HorizontalScrollView>
+        </LinearLayout>
 
-
-
-        <TextView
-            android:text="value"
-            android:id="@+id/data4"
-            android:paddingStart="10dp"
+        <LinearLayout
+            android:id="@+id/layout_3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="UselessParent,WebViewLayout">
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
 
-            <WebView
-                android:id="@+id/webView4"
+
+            <TextView
+                android:id="@+id/data3"
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingStart="10dp"
+                android:text="value" />
 
-        </HorizontalScrollView>
-
-
-
-        <TextView
-            android:text="value"
-            android:id="@+id/data5"
-            android:paddingStart="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="UselessParent,WebViewLayout">
-
-            <WebView
-                android:id="@+id/webView5"
+            <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="200dp"
+                tools:ignore="UselessParent,WebViewLayout">
 
-        </HorizontalScrollView>
+                <WebView
+                    android:id="@+id/webView_3"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+
+            </HorizontalScrollView>
+        </LinearLayout>
 
 
-        <TextView
-            android:text="value"
-            android:id="@+id/data6"
-            android:paddingStart="10dp"
+        <LinearLayout
+            android:id="@+id/layout_4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
 
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="UselessParent,WebViewLayout">
 
-            <WebView
-                android:id="@+id/webView6"
+            <TextView
+                android:id="@+id/data4"
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingStart="10dp"
+                android:text="value" />
 
-        </HorizontalScrollView>
-
-
-
-
-        <TextView
-            android:text="value"
-            android:id="@+id/data7"
-            android:paddingStart="10dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="UselessParent,WebViewLayout">
-
-            <WebView
-                android:id="@+id/webView7"
+            <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="200dp"
+                tools:ignore="UselessParent,WebViewLayout">
 
-        </HorizontalScrollView>
+                <WebView
+                    android:id="@+id/webView4"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
 
+            </HorizontalScrollView>
+        </LinearLayout>
 
-
-
-        <TextView
-            android:text="value"
-            android:id="@+id/data8"
-            android:paddingStart="10dp"
+        <LinearLayout
+            android:id="@+id/layout_5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            tools:ignore="UselessParent,WebViewLayout">
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
 
-            <WebView
-                android:id="@+id/webView8"
+
+            <TextView
+                android:id="@+id/data5"
                 android:layout_width="match_parent"
-                android:layout_height="200dp" />
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingStart="10dp"
+                android:text="value" />
 
-        </HorizontalScrollView>
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                tools:ignore="UselessParent,WebViewLayout">
+
+                <WebView
+                    android:id="@+id/webView5"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+
+            </HorizontalScrollView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/data6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingStart="10dp"
+                android:text="value" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                tools:ignore="UselessParent,WebViewLayout">
+
+                <WebView
+                    android:id="@+id/webView6"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+
+            </HorizontalScrollView>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/layout_7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/data7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingStart="10dp"
+                android:text="value" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                tools:ignore="UselessParent,WebViewLayout">
+
+                <WebView
+                    android:id="@+id/webView7"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+
+            </HorizontalScrollView>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/layout_8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:orientation="vertical">
+
+
+            <TextView
+                android:id="@+id/data8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingStart="10dp"
+                android:text="value" />
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                tools:ignore="UselessParent,WebViewLayout">
+
+                <WebView
+                    android:id="@+id/webView8"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+
+            </HorizontalScrollView>
+        </LinearLayout>
 
 
     </LinearLayout>
-
 
 
 </ScrollView>

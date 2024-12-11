@@ -39,6 +39,8 @@ class SignUpActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
+            auth.createUserWithEmailAndPassword(email,password)
+
             // Firebase Authentication: Create a new user with email and password
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->

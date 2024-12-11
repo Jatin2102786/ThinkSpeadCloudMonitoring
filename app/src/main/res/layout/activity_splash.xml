@@ -10,8 +10,8 @@
     tools:context=".SplashActivity">
 <ImageView
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:src="@drawable/cloud"
+    android:layout_height="300dp"
+    android:src="@drawable/baseline_cloud_24"
     android:id="@+id/imgSplash"
     />
 

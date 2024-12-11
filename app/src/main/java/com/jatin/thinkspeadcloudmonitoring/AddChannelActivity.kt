@@ -34,7 +34,7 @@ class AddChannelActivity : AppCompatActivity() {
             ) {
                 binding.ChannelID.error = "Please fill this field"
             } else if (
-                binding.apiKey.text!!.isEmpty()
+                binding.channelName.text!!.isEmpty()
             ) {
                 binding.apiKey.error = "Please fill this field"
             }
@@ -51,11 +51,12 @@ class AddChannelActivity : AppCompatActivity() {
 
                     val newChannel = Channel(email,name,id,key)
 
-                    dbRef.push().setValue(newChannel)
+                    dbRef.child(id).setValue(newChannel)
                         .addOnSuccessListener {
                             Toast.makeText(this,"Channel added successfully",
                                 Toast.LENGTH_SHORT
                             ).show()
+                            finish()
                         }
                         .addOnFailureListener {
                             Toast.makeText(
