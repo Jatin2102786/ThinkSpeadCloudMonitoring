@@ -17,15 +17,15 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginRight="5dp"
+            app:cardCornerRadius="0dp"
+            app:strokeColor="@color/primary"
             android:layout_marginBottom="30dp"
             app:cardBackgroundColor="@color/primary"
-            app:cardCornerRadius="10dp">
+           >
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
+                android:padding="10dp"
                 android:layout_height="match_parent">
 
                 <androidx.constraintlayout.widget.Guideline

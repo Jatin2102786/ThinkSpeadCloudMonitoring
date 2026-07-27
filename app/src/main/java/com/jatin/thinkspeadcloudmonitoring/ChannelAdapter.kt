@@ -1,30 +1,18 @@
 package com.jatin.thinkspeadcloudmonitoring
-
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
-class ChannelAdapter(
-    private val context: Context,
-    private val itemList: ArrayList<Channel>,
-    private val itemClick: OnItemClickListener
-) : RecyclerView.Adapter<ChannelAdapter.ViewHolder>() {
+class ChannelAdapter(private val listener: OnItemClickListener) :
+    ListAdapter<Channel, ChannelAdapter.ViewHolder>(DiffCallback()) {
 
-    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var title: TextView = itemView.findViewById(R.id.channelTitle)
-        var id: TextView = itemView.findViewById(R.id.channelId)
-
-        init {
-            itemView.setOnClickListener {
-                val position = adapterPosition
-                if (position != RecyclerView.NO_POSITION) {
-                    itemClick.onItemClick(position)
-                }
-            }
-        }
+    interface OnItemClickListener {
+        fun onItemClick(position: Int)
+        fun onItemLongClick(position: Int)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,22 +20,29 @@ class ChannelAdapter(
         return ViewHolder(view)
     }
 
-    override fun getItemCount(): Int {
-        return itemList.size
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val channel = getItem(position)
+        holder.bind(channel)
     }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.title.text = itemList[position].name
-        holder.id.text = itemList[position].id
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val nameTV: TextView = itemView.findViewById(R.id.channelTitle) // Update IDs as per your layout
 
-        holder.itemView.setOnLongClickListener {
-            itemClick.onItemLongClick(position) // Call the long click method
-            true // Indicate that the long click event has been handled
+        private val channelId : TextView = itemView.findViewById(R.id.channelId)
+        fun bind(channel: Channel) {
+            nameTV.text = channel.name
+            channelId.text = channel.id
+
+            itemView.setOnClickListener { listener.onItemClick(adapterPosition) }
+            itemView.setOnLongClickListener {
+                listener.onItemLongClick(adapterPosition)
+                true
+            }
         }
     }
 
-    interface OnItemClickListener {
-        fun onItemClick(position: Int)
-        fun onItemLongClick(position: Int) // Add this method to the interface
+    class DiffCallback : DiffUtil.ItemCallback<Channel>() {
+        override fun areItemsTheSame(oldItem: Channel, newItem: Channel) = oldItem.id == newItem.id
+        override fun areContentsTheSame(oldItem: Channel, newItem: Channel) = oldItem == newItem
     }
 }

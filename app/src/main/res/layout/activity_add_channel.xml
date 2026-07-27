@@ -4,90 +4,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-
+    android:fillViewport="true"
+    android:background="@android:color/white"
     tools:context=".AddChannelActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:orientation="vertical"
-       >
+        android:padding="24dp">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="30sp"
-            android:text="Add Channel Details"
-            android:layout_marginTop="20dp"
-            />
+            android:text="Add New Channel"
+            android:textColor="@color/black"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="40dp" />
 
-        <TextView
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="Channel Name"
-            android:textColor="@color/primary"
-            android:layout_marginTop="60dp"
-            />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/channelName"
-            android:hint="Monitoring channel"
-            />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="Channel Id"
-            android:textColor="@color/primary"
-            android:layout_marginTop="20dp"
-            />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/ChannelID"
-            android:hint="2102786"
-            />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:text="API Key (Read)"
-            android:textColor="@color/primary"
-            android:layout_marginTop="30dp"
-            />
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/apiKey"
-            android:hint="KJJDJHSHEU"
-            />
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/btnAddChannel"
-            android:layout_width="wrap_content"
-            app:cardCornerRadius="20dp"
-            android:layout_height="wrap_content"
-            android:clickable="true"
-            app:strokeColor="@color/cardview_dark_background"
-            android:layout_marginTop="30dp"
-            >
-            <TextView
+            android:layout_marginBottom="16dp"
+            android:hint="Channel Name">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/channelName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Create Channel"
-                android:padding="10dp"
-                android:textAlignment="center"
-                android:paddingStart="40dp"
-                android:paddingEnd="40dp"
-                />
-        </com.google.android.material.card.MaterialCardView>
+                android:inputType="textCapWords" />
+        </com.google.android.material.textfield.TextInputLayout>
 
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:hint="Channel ID">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/ChannelID"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:hint="Read API Key">
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/apiKey"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textVisiblePassword" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnAddChannel"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Create Channel"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:cornerRadius="12dp"
+            app:backgroundTint="@color/primary" />
 
     </LinearLayout>
-
-
 </ScrollView>

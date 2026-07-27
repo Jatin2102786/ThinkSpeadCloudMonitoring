@@ -47,8 +47,6 @@ class MainActivity : AppCompatActivity() {
 
             val channel = jsonObject.getJSONObject("channel")
             val feed = jsonObject.getJSONArray("feeds").getJSONObject(0)
-
-
             val fieldName1 = channel.optString("field1", "Field 1")
             val fieldName2 = channel.optString("field2", "Field 2")
             val fieldName3 = channel.optString("field3", "Field 3")
@@ -57,6 +55,9 @@ class MainActivity : AppCompatActivity() {
             val fieldName6 = channel.optString("field6", "Field 6")
             val fieldName7 = channel.optString("field7", "Field 7")
             val fieldName8 = channel.optString("field8", "Field 8")
+
+
+
 
             val dataStream1 = feed.optString("field1", "No Data")
             val dataStream2 = feed.optString("field2", "No Data")
@@ -168,6 +169,8 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
+    
 
     private fun MyWebViewClient(): WebViewClient {
         return object : WebViewClient() {

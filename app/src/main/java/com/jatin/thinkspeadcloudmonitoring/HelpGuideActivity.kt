@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import com.jatin.thinkspeadcloudmonitoring.databinding.ActivityHelpGuideBinding
 
@@ -23,7 +24,11 @@ class HelpGuideActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        window.statusBarColor = getColor(R.color.primary)
 
+// To ensure your status bar icons (battery/time) stay visible:
+// If your bar color is DARK, use false. If your bar color is LIGHT, use true.
+        WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars = false
 
         setSupportActionBar(binding.toolbar)
         actionBar?.setDisplayShowTitleEnabled(false)

@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import androidx.annotation.RequiresApi
+import androidx.core.view.WindowCompat
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.jatin.thinkspeadcloudmonitoring.R
@@ -25,6 +26,12 @@ class SplashActivity : AppCompatActivity() {
         FirebaseApp.initializeApp(this)
         auth = FirebaseAuth.getInstance()
 
+
+        window.statusBarColor = getColor(R.color.white)
+
+// To ensure your status bar icons (battery/time) stay visible:
+// If your bar color is DARK, use false. If your bar color is LIGHT, use true.
+        WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars = true
 
 //        Thread{
 //            val source = ImageDecoder.createSource(

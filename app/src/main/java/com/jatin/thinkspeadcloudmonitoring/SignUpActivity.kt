@@ -3,7 +3,9 @@ package  com.jatin.thinkspeadcloudmonitoring
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
+import androidx.core.view.WindowCompat
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
@@ -23,9 +25,18 @@ class SignUpActivity : AppCompatActivity() {
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
         auth = FirebaseAuth.getInstance()
+
+        window.statusBarColor = getColor(R.color.primary)
+
+// To ensure your status bar icons (battery/time) stay visible:
+// If your bar color is DARK, use false. If your bar color is LIGHT, use true.
+        WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars = false
+
         FirebaseApp.initializeApp(this)
 
         binding.buttonSignUp.setOnClickListener {
+            binding.pgbar.visibility = View.VISIBLE
+
             val email = binding.editTextEmail.text.toString().trim()
             val password = binding.editTextPassword.text.toString().trim()
 //            val name = binding.editTextName.text.toString().trim()
@@ -36,16 +47,20 @@ class SignUpActivity : AppCompatActivity() {
 
             if (email.isEmpty() && password.isEmpty() ) {//&& name.isEmpty()) {// && phnNum.isEmpty() && experience.isEmpty() && expertise.isEmpty()) {
                 Toast.makeText(this, "All fields are compulsory!", Toast.LENGTH_SHORT).show()
+                binding.pgbar.visibility = View.GONE
+
                 return@setOnClickListener
             }
 
-            auth.createUserWithEmailAndPassword(email,password)
+//            auth.createUserWithEmailAndPassword(email,password)
 
             // Firebase Authentication: Create a new user with email and password
             auth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         // Sign-up success
+                        binding.pgbar.visibility = View.GONE
+
                         Toast.makeText(this, "Sign-up successful", Toast.LENGTH_SHORT).show()
                         database = FirebaseDatabase.getInstance()
                         usersRef = database.getReference("users")
@@ -59,6 +74,9 @@ class SignUpActivity : AppCompatActivity() {
 
                         // You can navigate to the next screen or perform additional tasks here
                     } else {
+
+                        binding.pgbar.visibility = View.GONE
+
                         // If sign-up fails, display a message to the user.
                         Toast.makeText(this, "Sign-up failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                     }

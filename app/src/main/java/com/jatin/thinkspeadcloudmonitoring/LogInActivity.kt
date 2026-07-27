@@ -2,7 +2,9 @@ package  com.jatin.thinkspeadcloudmonitoring
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
+import androidx.core.view.WindowCompat
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.jatin.thinkspeadcloudmonitoring.databinding.ActivityLogInBinding
@@ -24,13 +26,23 @@ class LogInActivity : AppCompatActivity() {
 //            startActivity(intent)
 //        }
 
+        window.statusBarColor = getColor(R.color.primary)
+
+// To ensure your status bar icons (battery/time) stay visible:
+// If your bar color is DARK, use false. If your bar color is LIGHT, use true.
+        WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars = false
+
 
         binding.buttonSignIn.setOnClickListener {
+
+            binding.pgBar.visibility = View.VISIBLE
             val email = binding.editTextEmail.text.toString().trim()
             val password = binding.editTextPassword.text.toString().trim()
 
 
             if (email.isEmpty() || password.isEmpty()) {
+                binding.pgBar.visibility = View.GONE
+
                 Toast.makeText(this, "Please enter email and password", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -40,6 +52,8 @@ class LogInActivity : AppCompatActivity() {
                 .addOnCompleteListener(this) { task ->
                     if (task.isSuccessful) {
                         // Sign-in success
+                        binding.pgBar.visibility = View.GONE
+
                         Toast.makeText(this, "Login successful", Toast.LENGTH_SHORT).show()
 
 
@@ -49,6 +63,8 @@ class LogInActivity : AppCompatActivity() {
                         startActivity(intent)
                         finish()
                     } else {
+                        binding.pgBar.visibility = View.GONE
+
                         // If sign-in fails, display a message to the user.
                         Toast.makeText(this, "Login failed: ${task.exception?.message}", Toast.LENGTH_SHORT).show()
                     }

@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import com.google.firebase.auth.FirebaseAuth
 import com.jatin.thinkspeadcloudmonitoring.databinding.ActivityAccountBinding
@@ -27,6 +28,12 @@ class AccountActivity : AppCompatActivity() {
         }
         auth = FirebaseAuth.getInstance()
         val currentUser = auth.currentUser
+
+        window.statusBarColor = getColor(R.color.primary)
+
+// To ensure your status bar icons (battery/time) stay visible:
+// If your bar color is DARK, use false. If your bar color is LIGHT, use true.
+        WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars = false
 
         binding.logOutBTN.elevation = 8f
         binding.userGmailTV.text = currentUser!!.email.toString()

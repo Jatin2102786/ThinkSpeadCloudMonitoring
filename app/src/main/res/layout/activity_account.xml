@@ -6,69 +6,71 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="#F8F9FA"
     tools:context=".AccountActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        app:layout_constraintTop_toTopOf="parent"
         android:background="@color/primary"
         android:elevation="4dp"
-        app:title="User Profile"
-        app:titleTextColor="@color/white"
+        app:title="My Account"
+        app:titleTextColor="@android:color/white"
         app:navigationIcon="@drawable/baseline_arrow_back_ios_24"
-        app:layout_constraintStart_toStartOf="parent"
-        android:theme="@style/ThemeOverlay.AppCompat.ActionBar" />
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center"
-        android:layout_marginTop="100dp"
-        >
-
-
-    <TextView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="You have Signed In as:"
-        android:textAlignment="center"
-        android:paddingStart="50dp"
-        android:paddingEnd="50dp"
-        android:textSize="40sp"
-        android:textColor="@color/primary"
-        />
+        android:layout_margin="24dp"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="8dp"
+        android:padding="24dp">
 
-    <TextView
-        android:id="@+id/userGmailTV"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:text="example@gmail.com"
-        android:textSize="30sp"
-        android:textAlignment="center"
-        />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/logOutBTN"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Log Out"
-            android:layout_margin="30dp"
-            android:elevation="10dp"
-            android:textSize="20sp"
-            android:padding="16dp"
-            android:backgroundTint="@color/primary"
-            android:textColor="@android:color/white"
-            android:letterSpacing="0.1"
-            app:cornerRadius="50dp"
-            app:strokeColor="@color/black"
-            app:strokeWidth="2dp"
-            />
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="32dp">
 
-    </LinearLayout>
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:src="@drawable/baseline_account_circle_24"
+                app:tint="@color/primary"
+                android:layout_marginBottom="24dp" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Signed in as"
+                android:textSize="16sp"
+                android:textColor="#757575" />
 
+            <TextView
+                android:id="@+id/userGmailTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="example@gmail.com"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginTop="8dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/logOutBTN"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="32dp"
+                android:text="Log Out"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:cornerRadius="30dp"
+                app:backgroundTint="@android:color/holo_red_dark" />
+
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
 
 </LinearLayout>

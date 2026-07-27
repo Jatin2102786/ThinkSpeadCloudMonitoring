@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,35 +15,20 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
 import com.jatin.thinkspeadcloudmonitoring.databinding.ActivityRecyclerViewBinding
-
-class RecyclerViewActivity : AppCompatActivity(),ChannelAdapter.OnItemClickListener {
+class RecyclerViewActivity : AppCompatActivity(), ChannelAdapter.OnItemClickListener {
 
     private lateinit var auth: FirebaseAuth
-    private lateinit var channelList: ArrayList<Channel>
-    private lateinit var database: FirebaseDatabase
-    private lateinit var dbRef: DatabaseReference
     private lateinit var binding: ActivityRecyclerViewBinding
+    private lateinit var adapter: ChannelAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
         binding = ActivityRecyclerViewBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setSupportActionBar(binding.toolbar)
-        actionBar?.setDisplayShowTitleEnabled(false)
 
         auth = FirebaseAuth.getInstance()
-        channelList = arrayListOf()
-
-        setupToolbar()
         setupRecyclerView()
         fetchChannels()
-    }
-
-    private fun setupToolbar() {
-        binding.toolbar.setNavigationOnClickListener {
-            startActivity(Intent(this, AccountActivity::class.java))
-        }
 
         binding.helpTV.setOnClickListener {
             startActivity(Intent(this, HelpGuideActivity::class.java))
@@ -50,91 +36,67 @@ class RecyclerViewActivity : AppCompatActivity(),ChannelAdapter.OnItemClickListe
 
         binding.addChannel.setOnClickListener {
             startActivity(Intent(this, AddChannelActivity::class.java))
-            channelList.clear() // Ensure this is really necessary
+        }
+
+        binding.toolbar.setNavigationOnClickListener {
+            startActivity(Intent(this, AccountActivity::class.java))
+
         }
     }
 
     private fun setupRecyclerView() {
+        adapter = ChannelAdapter(this)
         binding.channelRecyclerView.layoutManager = LinearLayoutManager(this)
-        binding.channelRecyclerView.adapter = ChannelAdapter(this, channelList, this)
+        binding.channelRecyclerView.adapter = adapter
     }
 
     private fun fetchChannels() {
-        database = FirebaseDatabase.getInstance()
-        dbRef = database.getReference("channels").child(auth.currentUser?.uid.toString())
+
+        binding.pgBar.visibility = View.VISIBLE
+        val dbRef = FirebaseDatabase.getInstance().getReference("channels")
+            .child(auth.currentUser?.uid.toString())
 
         dbRef.addValueEventListener(object : ValueEventListener {
-            @SuppressLint("NotifyDataSetChanged")
             override fun onDataChange(snapshot: DataSnapshot) {
-                if (snapshot.exists()) {
-                    val newChannels = ArrayList<Channel>() // Use a temporary list to avoid modifying the original during iteration
-                    for (data in snapshot.children) {
-                        val channel = data.getValue(Channel::class.java)
-                        channel?.let { newChannels.add(it) }
-                    }
-                    updateChannelList(newChannels)
+                val newChannels = mutableListOf<Channel>()
+                for (data in snapshot.children) {
+                    data.getValue(Channel::class.java)?.let { newChannels.add(it) }
                 }
+                // ListAdapter handles the notification automatically
+                adapter.submitList(newChannels)
+                binding.pgBar.visibility = View.GONE
+
             }
 
             override fun onCancelled(error: DatabaseError) {
-                Toast.makeText(this@RecyclerViewActivity, "Failed to show channels", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this@RecyclerViewActivity, "Failed to load", Toast.LENGTH_SHORT).show()
             }
         })
     }
 
-    private fun updateChannelList(newChannels: List<Channel>) {
-        val initialSize = channelList.size
-        channelList.clear() // Clear the existing list
-        channelList.addAll(newChannels) // Add the new channels
-
-        // Notify the adapter of the changes
-        binding.channelRecyclerView.adapter?.notifyItemRangeRemoved(0, initialSize) // Notify for old items
-        binding.channelRecyclerView.adapter?.notifyItemRangeInserted(0, newChannels.size) // Notify for new items
-    }
-
     override fun onItemClick(position: Int) {
+        val item = adapter.currentList[position]
         val intent = Intent(this, MainActivity::class.java).apply {
-            putExtra("id", channelList[position].id)
-            putExtra("api", channelList[position].apiKey)
-            putExtra("name", channelList[position].name)
+            putExtra("id", item.id)
+            putExtra("api", item.apiKey)
+            putExtra("name", item.name)
         }
         startActivity(intent)
     }
 
     override fun onItemLongClick(position: Int) {
-        val channelId = channelList[position].id
-
-
+        val channelId = adapter.currentList[position].id
         AlertDialog.Builder(this)
             .setTitle("Delete Channel")
-            .setMessage("Are you sure you want to delete the channel?")
-            .setPositiveButton("Yes") {_,_ -> deleteChannel(channelId,position)}
-            .setNegativeButton("No",null)
+            .setMessage("Are you sure?")
+            .setPositiveButton("Yes") { _, _ -> deleteChannel(channelId) }
+            .setNegativeButton("No", null)
             .show()
     }
 
-    private fun deleteChannel(channelId: String, position: Int) {
-        val dbref = FirebaseDatabase.getInstance()
-            .getReference("channels")
+    private fun deleteChannel(channelId: String) {
+        FirebaseDatabase.getInstance().getReference("channels")
             .child(auth.currentUser?.uid.toString())
-            .child(channelId)
-
-        dbref.removeValue().addOnCompleteListener { task ->
-            if (task.isSuccessful) {
-                // Remove the item from the list
-                channelList.removeAt(position)
-
-                // Notify the adapter that an item was removed
-                binding.channelRecyclerView.adapter?.notifyItemRemoved(position)
-                binding.channelRecyclerView.adapter?.notifyItemRangeChanged(position, channelList.size)
-
-                Toast.makeText(this, "Channel deleted", Toast.LENGTH_SHORT).show()
-            } else {
-                Toast.makeText(this, "Failed to delete channel", Toast.LENGTH_SHORT).show()
-            }
-        }
+            .child(channelId).removeValue()
     }
-
-
-
 }
